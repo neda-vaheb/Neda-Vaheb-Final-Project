@@ -9,6 +9,7 @@ body {
   max-width: 1400px;
   min-height: 100vh;
   padding: 10px;
+  background-color: #F7F8F8;
 }
 
 * {
@@ -26,4 +27,13 @@ button,
 input,
 select {
   font-family: inherit;
+}
+.header{
+  font-weight:700;
+  Size:31px;
+  line-height:34.66px;
+  text-align: center;
+  color: #282828;
+  margin: 20px auto;
+
 }

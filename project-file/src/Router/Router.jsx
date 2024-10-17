@@ -1,11 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import ProductList from '../pages/ProductList'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
+import Login from '../Components/template/Login'
+import Register from '../Components/template/Register'
 import PageNotFound from '../pages/404'
 
 function Router() {
+    
   return (
     <Routes>
         <Route path='/' element={<ProductList/>}/>
