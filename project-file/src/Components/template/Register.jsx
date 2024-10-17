@@ -12,10 +12,12 @@ function Register({setStatus}) {
   })
 
   const changeHandler = (event)=>{
+    event.preventDefault()
     const name = event.target.name;
 setForm({...form , [name]: event.target.value});
   }
-  const submitHandler = ()=>{
+  const submitHandler = (event)=>{
+    event.preventDefault()
     console.log(form)
   }
   return (
@@ -29,15 +31,16 @@ setForm({...form , [name]: event.target.value});
         فرم ثبت نام 
       </h4>
       </div>
-      <div>
-        <input value={form.userName} name="username" type='text' placeholder='نام کاربری'  />
+      <div className={styles.inputs}>
+        <input value={form.userName} name="userName" type='text' placeholder='نام کاربری'  />
         <input value={form.password} name="password" type="password" placeholder='رمز عبور'/>
         <input value={form.repeatPasswoard} name="repeatPasswoard" type='password' placeholder='تکرار رمز عبور'/>
       </div>
-      <div>
+      <div className={styles.formButton}>
       <button type='submit'>ثبت نام</button>
-      <Link to="login">حساب کاربری دارید؟</Link>
+      <Link to="/login">حساب کاربری دارید؟</Link>
       </div>
+     
      
     </form>
     </>
