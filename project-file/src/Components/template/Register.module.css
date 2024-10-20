@@ -52,9 +52,12 @@
 .formButton button{
     background: #55A3F0;
     text-align: center;
-line-height: 0;
+line-height: 35px;
 color: white;
 transition: all 0.3s ease-in;
+font-size:1.1rem;
+padding: 0;
+
 }
 .formButton button:hover{
     opacity: 0.5;

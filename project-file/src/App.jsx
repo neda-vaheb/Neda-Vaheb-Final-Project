@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Router from './Router/Router'
 import defaultOptions from './configs/reactQuery.js'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const queryClint = new QueryClient({defaultOptions});
@@ -14,6 +15,7 @@ function App() {
     <Router/>
     <ReactQueryDevtools/>
     </BrowserRouter>
+    <Toaster/>
     </QueryClientProvider>
    
   )
