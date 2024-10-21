@@ -1,0 +1,20 @@
+.dashboardHeader{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    width: calc(100% - 6rem);
+    margin: 40px auto;
+   background-color: white;
+   border-radius:16px ;
+   align-items: center;
+height: 60px;
+}
+.dashboardHeader input{
+    width: 1000px;
+    border: none;
+    outline: none;
+
+
+    
+  
+}

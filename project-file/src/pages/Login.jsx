@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { getProfile } from "../../services/user";
 
-import img from "../../assets/images/Union.png";
+// import img from ".../assets/images/Union.png";
 import styles from "./Register.module.css";
-import { login } from "../../services/auth";
-import { setCookie } from "../../utiles/cookie";
-// import { useMutation } from "@tanstack/react-query";
+import { login } from "../services/auth";
+import { setCookie } from "../utiles/cookie";
 
 
 function Login() {
@@ -27,14 +25,20 @@ function Login() {
 
   const submitHandler = async(event) => {
     event.preventDefault();
+
     if (!loginForm.userName || !loginForm.password) {
       toast.error("لطفا تمامی فیلد ها را به درستی وارد نمایید");
     }
-const{response ,error} = await login(`${loginForm.userName}` , `${loginForm.password}`);
- console.log({response,error})
-    console.log(loginForm);
-    navigate("/dashboard");
-  setCookie();
+const{response ,error} = await login(loginForm.userName , loginForm.password);
+ 
+if(response) {
+  setCookie(response.data);
+  toast.success("ورود با موفقیت انجام شد");
+  navigate("/dashboard");
+
+}
+if (error) toast.error("خطایی پیش آمده");
+
   };
   return (
     <>
@@ -45,7 +49,7 @@ const{response ,error} = await login(`${loginForm.userName}` , `${loginForm.pass
         className={styles.formContainer}
       >
         <div className={styles.formHeader}>
-          <img src={img} />
+          {/* <img src={img} /> */}
 
           <h4>فرم وود</h4>
         </div>

@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import img from "../../assets/images/Union.png";
+// import img from ".../assets/images/Union.png";
 import styles from"./Register.module.css";
 import toast from 'react-hot-toast';
-import { register } from '../../services/auth';
-// import { useMutation } from '@tanstack/react-query';
+import { register } from '../services/auth';
+import { useMutation } from '@tanstack/react-query';
 
-function Register({setStatus}) {
+function Register() {
   const[registerForm ,setregisterForm ] = useState({
     userName:"",
     password:"",
     repeatPasswoard: ""
   });
-
-// const{data , mutate} = useMutation(register);
+  const{mutate , data,error} = useMutation(register)
+const navigate = useNavigate();
 
   const changeHandler = (event)=>{
-    event.preventDefault()
+    event.preventDefault();
+
     const name = event.target.name;
 setregisterForm({...registerForm , [name]: event.target.value});
+
   };
 
   const submitHandler = async(event)=>{
@@ -29,25 +31,29 @@ setregisterForm({...registerForm , [name]: event.target.value});
       return;
     };
     if(registerForm.password !== registerForm.repeatPasswoard){
-      toast.error("تکرار کلمه عبور صحیح نمی باشد")
+      toast.error("تکرار کلمه عبور صحیح نمی باشد");
       return;
     };
 
-    // if(registerForm.password.length < 5){
-    //   toast.error("لطفا پسورد را بیشتر از 5 کاراکتر وارد نمایید")
-    //   return;
-    // };
-   const {response ,error} =  register(`${registerForm.userName}`, `${registerForm.password}`);
   
-    setStatus(2);
-    
+  mutate (registerForm.userName, registerForm.password);
+  if(data){
+console.log("success")
+    toast.success("ثبت نام با موفقیت انجام شد");
+    navigate("/login");
+
+  }
+  if(error){
+    toast.error("خطایی پیش آمده")
+  }
+   
   }
   return (
     <>
     <h2 className="header">بوت کمپ بوتو استارت</h2>
     <form onChange={changeHandler} onSubmit={submitHandler} className={styles.formContainer}>
       <div className={styles.formHeader}>
-        <img src={img}/>
+        {/* <img src={img}/> */}
        
       <h4>
         فرم ثبت نام 
