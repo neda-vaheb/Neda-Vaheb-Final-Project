@@ -6,15 +6,17 @@ import styles from"./Register.module.css";
 import toast from 'react-hot-toast';
 import { register } from '../services/auth';
 import { useMutation } from '@tanstack/react-query';
+import { useRegister } from '../services/mutations';
 
 function Register() {
   const[registerForm ,setregisterForm ] = useState({
     userName:"",
     password:"",
-    repeatPasswoard: ""
+    comfirmPassword: ""
   });
-  const{mutate , data,error} = useMutation(register)
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  // const{mutate} =useRegister();
+  const {mutate , data ,error} =useMutation(register)
 
   const changeHandler = (event)=>{
     event.preventDefault();
@@ -26,19 +28,30 @@ setregisterForm({...registerForm , [name]: event.target.value});
 
   const submitHandler = async(event)=>{
     event.preventDefault();
-    if(!registerForm.userName || !registerForm.password || !registerForm.repeatPasswoard  ) {
-      toast.error("لطفا تمامی فیلد ها را به درستی وارد نمایید");
-      return;
+const {userName , password , comfirmPassword} = registerForm;
+
+    if(!userName || !password || !comfirmPassword  ) {
+     return toast.error("لطفا تمامی فیلد ها را به درستی وارد نمایید");
+    
     };
-    if(registerForm.password !== registerForm.repeatPasswoard){
-      toast.error("تکرار کلمه عبور صحیح نمی باشد");
-      return;
+    if(password !== comfirmPassword){
+      return toast.error("تکرار کلمه عبور صحیح نمی باشد");
+      
     };
 
-  
-  mutate (registerForm.userName, registerForm.password);
+    // mutate(
+    //   { userName, password },
+    //   {
+    //     onSuccess: (data) => {
+    //      toast.success("ثبت نام با موفقیت انجام شد")
+    //       navigate("/login");
+    //     },
+    //     onError: (error) =>toast.error("مشکلی پیش آمده"),
+    //   }
+    // );
+  mutate (`${userName}`,`${password}`);
+
   if(data){
-console.log("success")
     toast.success("ثبت نام با موفقیت انجام شد");
     navigate("/login");
 
@@ -51,22 +64,22 @@ console.log("success")
   return (
     <>
     <h2 className="header">بوت کمپ بوتو استارت</h2>
-    <form onChange={changeHandler} onSubmit={submitHandler} className={styles.formContainer}>
+    <form  onSubmit={submitHandler} className={styles.formContainer}>
       <div className={styles.formHeader}>
-        {/* <img src={img}/> */}
+        <img src="/Union.png"/>
        
       <h4>
         فرم ثبت نام 
       </h4>
       </div>
       <div className={styles.inputs}>
-        <input value={registerForm.userName} name="userName" type='text' placeholder='نام کاربری'  />
-        <input value={registerForm.password} name="password" type="text" placeholder='رمز عبور'/>
-        <input value={registerForm.repeatPasswoard} name="repeatPasswoard" type='text' placeholder='تکرار رمز عبور'/>
+        <input value={registerForm.userName} name="userName" type='text' placeholder='نام کاربری' onChange={changeHandler} />
+        <input value={registerForm.password} name="password" type="text" placeholder='رمز عبور' onChange={changeHandler}/>
+        <input value={registerForm.comfirmPassword} name="comfirmPassword" type='text' placeholder='تکرار رمز عبور' onChange={changeHandler}/>
       </div>
       <div className={styles.formButton}>
       <button type='submit'>ثبت نام</button>
-      <Link onClick={()=>setStatus(2)}>حساب کاربری دارید؟</Link>
+      <Link  to ="/login">حساب کاربری دارید؟</Link>
       </div>
      
      
