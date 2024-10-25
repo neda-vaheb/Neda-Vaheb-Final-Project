@@ -49,7 +49,7 @@ const{response ,error} =  login(`${userName}` , `${password}`);
 if(response) {
   setCookie("token",token);
   toast.success("ورود با موفقیت انجام شد");
-  navigate("/");
+  navigate("");
 
 }
 if (error) toast.error("خطایی پیش آمده");

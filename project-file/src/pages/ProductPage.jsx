@@ -14,7 +14,6 @@ function ProductPage() {
     ["All-Products"],
     getAllProducts
   );
-  console.log({ data });
   const [products, setProducts] = useState([]);
 
   // Set products when data is loaded
@@ -70,27 +69,27 @@ function ProductPage() {
         </div>
       </div>
       <table>
-        <thead>
-          <tr>
-            <th>نام کالا</th>
-
-            <th>موجودی</th>
-
-            <th>قیمت</th>
-            <th>شناسه کالا</th>
-            <th></th>
-          </tr>
-        </thead>
-        {!Array.isArray(products) || products.length === 0 ? (
-          <div>محصولی یافت نشد</div>
-        ) : (
-          <tbody>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </tbody>
-        )}
-      </table>
+  <thead>
+    <tr>
+      <th>نام کالا</th>
+      <th>موجودی</th>
+      <th>قیمت</th>
+      <th>شناسه کالا</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {Array.isArray(products) && products.length > 0 ? (
+      products.map((product) => (
+        <ProductCard key={product.id} product={product} products={products} setProducts={setProducts}/>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="5">محصولی یافت نشد</td>
+      </tr>
+    )}
+  </tbody>
+</table>
     </div>
   );
 }
