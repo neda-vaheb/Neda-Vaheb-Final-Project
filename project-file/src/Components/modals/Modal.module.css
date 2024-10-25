@@ -9,6 +9,11 @@
   justify-content: center;
   align-items: center;  
 }
+.container p{
+    text-align: center;
+    color:#282828 ;
+    font-size: 20px;
+}
 form {
     position: relative;
     display: flex;
@@ -20,6 +25,7 @@ form {
     background-color: white;
     padding: 30px;
     border-radius: 6px;
+    gap: 15px;
   }
   form >div{
     display: flex;
@@ -55,6 +61,7 @@ form {
     border-radius: 10px;
     background-color: #DFDFDF;
     cursor: pointer;
+    transition: all 0.3s ease-in;
 
   }
   .editButtons > button:hover{
@@ -62,5 +69,38 @@ form {
   }
   .editButtons > button:first-child{
     background-color: #55A3F0;
+    color: white;
+  }
+  .closeImage{
+   
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .closeImage img{
+    width: 96px;
+  }
+  .deleteButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:20px
+  }
+  .deleteButtons > button{
+    width: 50%;
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+
+}
+.deleteButtons > button:hover{
+  opacity: 0.5;
+}
+  .deleteButtons > button:first-child{
+    background-color: #F43F5E;
     color: white;
   }

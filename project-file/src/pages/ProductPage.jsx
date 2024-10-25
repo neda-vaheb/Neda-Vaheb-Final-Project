@@ -85,7 +85,7 @@ function ProductPage() {
       ))
     ) : (
       <tr>
-        <td colSpan="5">محصولی یافت نشد</td>
+        <td colSpan="5" className={styles.noProduct}>محصولی یافت نشد</td>
       </tr>
     )}
   </tbody>

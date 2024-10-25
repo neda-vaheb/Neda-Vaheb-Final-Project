@@ -1,4 +1,3 @@
-import { useState } from "react"
 import styles from"./Modal.module.css"
 function EditModal({editProduct , setEditProduct , setIsEdit,submitHandler}) {
    const changeHandler = (event) => {

@@ -106,3 +106,7 @@ tbody tr td div button{
 .tbody tr td div button:hover{
 opacity: 0.5;
 }
+.noProduct{
+    text-align: center;
+    padding: 20px;
+}
