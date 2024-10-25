@@ -7,15 +7,16 @@ import Loader from "../Components/template/Loader";
 import styles from "./ProductPage.module.css";
 import { RiSearchLine } from "react-icons/ri";
 import { FaRegCircleUser } from "react-icons/fa6";
+import AddModal from "../Components/modals/AddModal";
 function ProductPage() {
   const [search, setSearch] = useState("");
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ["All-Products"],
     getAllProducts
   );
   const [products, setProducts] = useState([]);
-
+const [isAdd , setIsAdd] = useState(false) 
   // Set products when data is loaded
   useEffect(() => {
     if (data && data.data.data) {
@@ -44,8 +45,10 @@ function ProductPage() {
   if (isLoading) {
     return <Loader />;
   }
-
-  return (
+const addHandler = ()=>{
+  setIsAdd(true);
+}
+  return (<>
     <div className={styles.productContainer}>
       <div className={styles.searchBox}>
         <RiSearchLine />
@@ -65,32 +68,42 @@ function ProductPage() {
           <span>مدیریت محصول</span>
         </div>
         <div>
-          <button>افزودن محصول</button>
+          <button onClick={addHandler}>افزودن محصول</button>
         </div>
       </div>
       <table>
-  <thead>
-    <tr>
-      <th>نام کالا</th>
-      <th>موجودی</th>
-      <th>قیمت</th>
-      <th>شناسه کالا</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {Array.isArray(products) && products.length > 0 ? (
-      products.map((product) => (
-        <ProductCard key={product.id} product={product} products={products} setProducts={setProducts}/>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="5" className={styles.noProduct}>محصولی یافت نشد</td>
-      </tr>
-    )}
-  </tbody>
-</table>
+        <thead>
+          <tr>
+            <th>نام کالا</th>
+            <th>موجودی</th>
+            <th>قیمت</th>
+            <th>شناسه کالا</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(products) && products.length > 0 ? (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                products={products}
+                setProducts={setProducts}
+              />
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" className={styles.noProduct}>
+                محصولی یافت نشد
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
     </div>
+    {isAdd && <AddModal setIsADD={setIsAdd} setProducts={setProducts}/>}
+            </>
   );
 }
 
