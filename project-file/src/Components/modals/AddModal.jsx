@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from"./Modal.module.css"
 import toast from "react-hot-toast";
 import { v4 } from "uuid";
+import { useMutation } from "@tanstack/react-query";
+import { postProduct } from "../../services/products";
 function AddModal({setIsADD , setProducts}) {
     const [product, setProduct] = useState({
         id: "",
@@ -10,6 +12,7 @@ function AddModal({setIsADD , setProducts}) {
         price: "",
         
       });
+      const {mutate,data} = useMutation(postProduct)
    const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -32,6 +35,7 @@ function AddModal({setIsADD , setProducts}) {
 
     const newProduct = { ...product, id: v4() };
     setProducts((products) => [...products, newProduct]);
+mutate(newProduct);
     setIsADD(false);
   };
   return (

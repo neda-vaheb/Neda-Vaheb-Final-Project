@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import ProductCard from "../Components/template/ProductCard";
 import Loader from "../Components/template/Loader";
 import styles from "./ProductPage.module.css";
-import { RiSearchLine } from "react-icons/ri";
-import { FaRegCircleUser } from "react-icons/fa6";
+
 import AddModal from "../Components/modals/AddModal";
+import SearchBox from "../Components/template/SearchBox";
 function ProductPage() {
-  const [search, setSearch] = useState("");
+ 
 
   const { data, isLoading, isError } = useQuery(
     ["All-Products"],
@@ -24,19 +24,7 @@ const [isAdd , setIsAdd] = useState(false)
     }
   }, [data]);
 
-  // Filter products based on search input
-  useEffect(() => {
-    if (data && data.data.data) {
-      if (search) {
-        const filteredProducts = data.data.data.filter((product) =>
-          product.name.toLowerCase().includes(search.toLowerCase())
-        );
-        setProducts(filteredProducts);
-      } else {
-        setProducts(data.data.data);
-      }
-    }
-  }, [search, data]);
+ 
 
   if (isError) {
     return toast.error("مشکلی پیش آمده");
@@ -50,18 +38,9 @@ const addHandler = ()=>{
 }
   return (<>
     <div className={styles.productContainer}>
-      <div className={styles.searchBox}>
-        <RiSearchLine />
-        <input
-          placeholder="جستجوی کالا"
-          type="text"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        />
-        <div>
-          <FaRegCircleUser /> نام و نام خانوادگی کاربر
-        </div>
-      </div>
+
+     <SearchBox data ={data} setProducts={setProducts}/>
+
       <div className={styles.manageProduct}>
         <div>
           <img src="setting-3.png" />

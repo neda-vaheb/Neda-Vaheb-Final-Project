@@ -8,17 +8,13 @@ import { setCookie } from "../utiles/cookie";
 import { useLogin } from "../services/mutations";
 import { useMutation } from "@tanstack/react-query";
 
-
 function Login() {
-  
   const [loginForm, setLoginForm] = useState({
     userName: "",
     password: "",
   });
-  const token = "124356678"
   const navigate = useNavigate();
-// const {mutate} = useLogin();
-const {mutate} = useMutation(login);
+  const { mutate, data, error } = useMutation(login);
 
   const changeHandler = (event) => {
     event.preventDefault();
@@ -26,42 +22,28 @@ const {mutate} = useMutation(login);
     setLoginForm({ ...loginForm, [name]: event.target.value });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-const {userName , password} = loginForm;
+    const { userName, password } = loginForm;
     if (!userName || !password) {
-   return toast.error("لطفا تمامی فیلد ها را به درستی وارد نمایید");
+      return toast.error("لطفا تمامی فیلد ها را به درستی وارد نمایید");
     }
 
+    mutate(userName, password);
 
-
-    // mutate(loginForm, {
-    //   onSuccess: (data) => {
-    //    toast.success("ورود با موفقعیت انجام شد")
-    //     setCookie("token", data.data?.token);
-    //     navigate("/");
-    //   },
-    //   onError: (error) => toast.error("مشکلی پیش آمده"),
-    // });
-
-const{response ,error} =  login(`${userName}` , `${password}`);
- 
-if(response) {
-  setCookie("token",token);
-  toast.success("ورود با موفقیت انجام شد");
-  navigate("");
-
-}
-if (error) toast.error("خطایی پیش آمده");
-
+    if (data) {
+      toast.success("ورود با موفقیت انجام شد");
+      setCookie("token", data.data?.token);
+      navigate("/");
+    }
+    if (error) {
+      toast.error("خطایی پیش آمده");
+    }
   };
   return (
     <>
       <h2 className="header">بوت کمپ بوتو استارت</h2>
-      <form
-        onSubmit={submitHandler}
-        className={styles.formContainer}
-      >
+      <form onSubmit={submitHandler} className={styles.formContainer}>
         <div className={styles.formHeader}>
           <img src="/Union.png" />
 

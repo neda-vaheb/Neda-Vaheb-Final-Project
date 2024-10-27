@@ -11,15 +11,13 @@ const register = (user , pass)=>{
     
         }
 const login = (user , pass)=>{
-    try{
-        const response =  api.post("http://localhost:3000/auth/login", {
+    
+        return api.post("http://localhost:3000/auth/login", {
             "username": `${user}`,
             "password": `${pass}`
           } );
          
-        return {response}
-    }catch(error){
-        return {error}
-    }
+        
+    
 }
 export{register,login}

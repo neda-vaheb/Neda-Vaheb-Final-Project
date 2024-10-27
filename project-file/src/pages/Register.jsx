@@ -49,7 +49,7 @@ const {userName , password , comfirmPassword} = registerForm;
     //     onError: (error) =>toast.error("مشکلی پیش آمده"),
     //   }
     // );
-  mutate (`${userName}`,`${password}`);
+  mutate (userName,password);
 
   if(data){
     toast.success("ثبت نام با موفقیت انجام شد");

@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import PropTypes from "prop-types";
+
 import styles from "../../pages/ProductPage.module.css";
-import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import EditModal from '../modals/EditModal';
-import { useMutation } from '@tanstack/react-query';
-import api from '../../configs/api';
-import DeleteModal from '../modals/DeleteModal';
+import EditModal from "../modals/EditModal";
+import DeleteModal from "../modals/DeleteModal";
+import { deleteProduct, putProduct } from "../../services/products";
 
 function ProductCard({ product, products, setProducts }) {
   const [isEdit, setIsEdit] = useState(false);
   const [isdelete, setIsDelete] = useState(false);
 
-// const  deleteProduct = (id)=> api.delete(`products/${id}`);
-//   const { mutate} = useMutation(deleteProduct,{onSuccess:()=>queryClient.invalidateQueries("get-categories")})
-  
+  const { mutate } = useMutation(deleteProduct, {
+    onSuccess: () => queryClient.invalidateQueries("All-Products"),
+  });
+  const { mutate:editMutate } = useMutation(putProduct, {
+    onSuccess: () => queryClient.invalidateQueries("All-Products"),
+  });
 
   const [editProduct, setEditProduct] = useState({
     id: "",
     name: "",
     quantity: "",
-    price: ""
+    price: "",
   });
-
-
 
   const editHandler = (id) => {
     setIsEdit(true);
@@ -37,44 +39,32 @@ function ProductCard({ product, products, setProducts }) {
     const newProducts = products.filter((product) => product.id !== id);
     setProducts([...newProducts, newProduct]);
     setIsEdit(false);
+    editMutate(newProduct);
   };
 
   const deleteHandler = () => {
     setIsDelete(true);
-    // if (window.confirm("آیا مطمئن هستید که می‌خواهید این محصول را حذف کنید؟")) {
-    //   const newProducts = products.filter((product) => product.id !== id);
-    //   setProducts(newProducts);
-    // }
-          // mutate(id)
-
   };
-  const finalDeleteHandler = (id)=>{
+  const finalDeleteHandler = (id) => {
     const newProducts = products.filter((product) => product.id !== id);
-      setProducts(newProducts);
-  }
+    setProducts(newProducts);
+    mutate(id);
+  };
 
   return (
     <>
       <tr key={product.id}>
         <td>
-          <div className={styles.cell}>
-            {product.name}
-          </div>
+          <div className={styles.cell}>{product.name}</div>
         </td>
         <td>
-          <div className={styles.cell}>
-            {product.quantity}
-          </div>
+          <div className={styles.cell}>{product.quantity}</div>
         </td>
         <td>
-          <div className={styles.cell}>
-            {product.price}
-          </div>
+          <div className={styles.cell}>{product.price}</div>
         </td>
         <td>
-          <div className={styles.cell}>
-            {product.id}
-          </div>
+          <div className={styles.cell}>{product.id}</div>
         </td>
         <td>
           <div>
@@ -87,20 +77,21 @@ function ProductCard({ product, products, setProducts }) {
           </div>
         </td>
       </tr>
-      {isEdit && 
-        <EditModal 
-          setIsEdit={setIsEdit} 
-          editProduct={editProduct} 
-          setEditProduct={setEditProduct} 
-          submitHandler={submitHandler} 
-        />}
-         {isdelete && 
-        <DeleteModal 
-          setIsDelete={setIsDelete} 
+      {isEdit && (
+        <EditModal
+          setIsEdit={setIsEdit}
+          editProduct={editProduct}
+          setEditProduct={setEditProduct}
+          submitHandler={submitHandler}
+        />
+      )}
+      {isdelete && (
+        <DeleteModal
+          setIsDelete={setIsDelete}
           finalDeleteHandler={finalDeleteHandler}
           product={product}
-           
-        />}
+        />
+      )}
     </>
   );
 }
