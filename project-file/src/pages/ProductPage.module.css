@@ -136,13 +136,11 @@ tbody tr td div button {
   .searchBox span {
     font-size: 0.7rem;
   }
-  .tableContainer{
-
+  .tableContainer {
     overflow-x: scroll;
     overflow-y: scroll;
-
   }
-  table thead{
+  table thead {
     font-size: 0.8rem;
   }
 }

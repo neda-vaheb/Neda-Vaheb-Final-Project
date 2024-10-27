@@ -22,7 +22,8 @@
 .formHeader img {
   width: 80px;
 }
-.inputs input ,.formButton button {
+.inputs input,
+.formButton button {
   width: 400px;
   background: #f2f2f2;
   height: 44px;
@@ -31,46 +32,42 @@
   outline: none;
   padding: 22px 15px;
   margin: auto;
-  
 }
 .inputs input:focus {
   outline: none;
-  border: 1px solid  #55A3F0;
-  ;
+  border: 1px solid #55a3f0;
 }
-.inputs ,.formButton{
+.inputs,
+.formButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
-.formButton{
-    align-items: flex-start;
-
+.formButton {
+  align-items: flex-start;
 }
-.formButton button{
-    background: #55A3F0;
-    text-align: center;
-line-height: 35px;
-color: white;
-transition: all 0.3s ease-in;
-font-size:1.1rem;
-padding: 0;
-
+.formButton button {
+  background: #55a3f0;
+  text-align: center;
+  line-height: 35px;
+  color: white;
+  transition: all 0.3s ease-in;
+  font-size: 1.1rem;
+  padding: 0;
 }
-.formButton button:hover{
-    opacity: 0.5;
+.formButton button:hover {
+  opacity: 0.5;
 }
-.formButton a{
-    text-align: right;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 25px;
-   color: #3A8BED;
-   margin:0 36px;
-
+.formButton a {
+  text-align: right;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: #3a8bed;
+  margin: 0 36px;
 }
-form > div{
+form > div {
   align-items: center;
 }

@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import styles from "../../pages/ProductPage.module.css";
 import EditModal from "../modals/EditModal";
@@ -15,7 +15,7 @@ function ProductCard({ product, products, setProducts }) {
   const { mutate } = useMutation(deleteProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });
-  const { mutate:editMutate } = useMutation(putProduct, {
+  const { mutate: editMutate } = useMutation(putProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });
 
@@ -39,7 +39,7 @@ function ProductCard({ product, products, setProducts }) {
     const newProducts = products.filter((product) => product.id !== id);
     setProducts([...newProducts, newProduct]);
     setIsEdit(false);
-    editMutate(newProduct.id);
+    editMutate(newProduct);
   };
 
   const deleteHandler = () => {
@@ -61,7 +61,10 @@ function ProductCard({ product, products, setProducts }) {
           <div className={styles.cell}>{product.quantity}</div>
         </td>
         <td>
-          <div className={styles.cell}> {product.price.toLocaleString()}  تومان</div>
+          <div className={styles.cell}>
+            {" "}
+            {product.price.toLocaleString()} تومان
+          </div>
         </td>
         <td>
           <div className={styles.cell}>{product.id}</div>
@@ -96,10 +99,10 @@ function ProductCard({ product, products, setProducts }) {
   );
 }
 
-ProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
-  products: PropTypes.array.isRequired,
-  setProducts: PropTypes.func.isRequired,
-};
+// ProductCard.propTypes = {
+//   product: PropTypes.object.isRequired,
+//   products: PropTypes.array.isRequired,
+//   setProducts: PropTypes.func.isRequired,
+// };
 
 export default ProductCard;

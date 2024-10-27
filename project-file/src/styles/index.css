@@ -9,7 +9,7 @@ body {
   max-width: 1400px;
   min-height: 100vh;
   padding: 10px;
-  background-color: #F7F8F8;
+  background-color: #f7f8f8;
 }
 
 * {
@@ -28,17 +28,16 @@ input,
 select {
   font-family: inherit;
 }
-.header{
-  font-weight:700;
-  Size:31px;
-  line-height:34.66px;
+.header {
+  font-weight: 700;
+  size: 31px;
+  line-height: 34.66px;
   text-align: center;
   color: #282828;
   margin: 20px auto;
-
 }
 
-@media(max-width:960px){
+@media (max-width: 960px) {
   :root {
     font-family: "Vazir", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-weight: 300;
