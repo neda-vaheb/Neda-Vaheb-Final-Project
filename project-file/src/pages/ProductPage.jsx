@@ -15,6 +15,7 @@ function ProductPage() {
     ["All-Products"],
     getAllProducts
   );
+ 
   const [products, setProducts] = useState([]);
 const [isAdd , setIsAdd] = useState(false) 
   // Set products when data is loaded
@@ -50,6 +51,8 @@ const addHandler = ()=>{
           <button onClick={addHandler}>افزودن محصول</button>
         </div>
       </div>
+      <div className={styles.tableContainer}>
+
       <table>
         <thead>
           <tr>
@@ -64,10 +67,10 @@ const addHandler = ()=>{
           {Array.isArray(products) && products.length > 0 ? (
             products.map((product) => (
               <ProductCard
-                key={product.id}
-                product={product}
-                products={products}
-                setProducts={setProducts}
+              key={product.id}
+              product={product}
+              products={products}
+              setProducts={setProducts}
               />
             ))
           ) : (
@@ -79,6 +82,7 @@ const addHandler = ()=>{
           )}
         </tbody>
       </table>
+          </div>
 
     </div>
     {isAdd && <AddModal setIsADD={setIsAdd} setProducts={setProducts}/>}

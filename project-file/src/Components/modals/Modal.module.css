@@ -27,11 +27,12 @@ form {
     border-radius: 6px;
     gap: 15px;
   }
-  form >div{
+  form > div{
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 10px 0;
+align-items: flex-start;
     
   }
   form >div input{

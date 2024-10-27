@@ -28,7 +28,10 @@ function SearchBox({data , setProducts}) {
       onChange={(event) => setSearch(event.target.value)}
     />
     <div>
-      <FaRegCircleUser /> نام و نام خانوادگی کاربر
+      <FaRegCircleUser /> 
+      <span>
+        نام و نام خانوادگی کاربر
+      </span>
     </div>
   </div>
   )

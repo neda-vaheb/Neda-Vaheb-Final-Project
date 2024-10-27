@@ -39,7 +39,7 @@ function ProductCard({ product, products, setProducts }) {
     const newProducts = products.filter((product) => product.id !== id);
     setProducts([...newProducts, newProduct]);
     setIsEdit(false);
-    editMutate(newProduct);
+    editMutate(newProduct.id);
   };
 
   const deleteHandler = () => {
@@ -61,7 +61,7 @@ function ProductCard({ product, products, setProducts }) {
           <div className={styles.cell}>{product.quantity}</div>
         </td>
         <td>
-          <div className={styles.cell}>{product.price}</div>
+          <div className={styles.cell}> {product.price.toLocaleString()}  تومان</div>
         </td>
         <td>
           <div className={styles.cell}>{product.id}</div>

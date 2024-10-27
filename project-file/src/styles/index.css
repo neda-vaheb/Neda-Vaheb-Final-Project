@@ -37,3 +37,12 @@ select {
   margin: 20px auto;
 
 }
+
+@media(max-width:960px){
+  :root {
+    font-family: "Vazir", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+}
