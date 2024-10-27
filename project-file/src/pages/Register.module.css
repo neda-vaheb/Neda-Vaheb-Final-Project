@@ -12,6 +12,9 @@
   box-shadow: 1px -3px 8px #e3e3e3;
   background-color: white;
 }
+.formHeader{
+  align-items: center;
+}
 .formHeader h4 {
   font-weight: 500;
   font-size: 24px;
@@ -68,6 +71,4 @@
   color: #3a8bed;
   margin: 0 36px;
 }
-form > div {
-  align-items: center;
-}
+
