@@ -32,7 +32,7 @@ function ProductCard({ product, products, setProducts }) {
     setEditProduct(productToEdit);
   };
 
-  const submitHandler = (event) => {
+  const finalEditHandler = (event) => {
     event.preventDefault();
     const id = editProduct.id;
     const newProduct = { ...editProduct, id };
@@ -46,8 +46,8 @@ function ProductCard({ product, products, setProducts }) {
     setIsDelete(true);
   };
   const finalDeleteHandler = (id) => {
-    const newProducts = products.filter((product) => product.id !== id);
-    setProducts(newProducts);
+    // const newProducts = products.filter((product) => product.id !== id);
+    // setProducts(newProducts);
     mutate(id);
   };
 
@@ -62,7 +62,6 @@ function ProductCard({ product, products, setProducts }) {
         </td>
         <td>
           <div className={styles.cell}>
-            {" "}
             {product.price.toLocaleString()} تومان
           </div>
         </td>
@@ -85,7 +84,7 @@ function ProductCard({ product, products, setProducts }) {
           setIsEdit={setIsEdit}
           editProduct={editProduct}
           setEditProduct={setEditProduct}
-          submitHandler={submitHandler}
+        submitHandler={finalEditHandler}
         />
       )}
       {isdelete && (

@@ -76,14 +76,14 @@ function Register() {
           <input
             value={registerForm.password}
             name="password"
-            type="text"
+            type="password"
             placeholder="رمز عبور"
             onChange={changeHandler}
           />
           <input
             value={registerForm.comfirmPassword}
             name="comfirmPassword"
-            type="text"
+            type="password"
             placeholder="تکرار رمز عبور"
             onChange={changeHandler}
           />

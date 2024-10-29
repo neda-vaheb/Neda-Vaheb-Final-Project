@@ -38,6 +38,7 @@ function AddModal({ setIsADD, setProducts }) {
         <div>
           <label htmlFor="name">نام کالا</label>
           <input
+             type="text"
             onChange={changeHandler}
             name="name"
             id="name"
@@ -47,6 +48,7 @@ function AddModal({ setIsADD, setProducts }) {
         <div>
           <label htmlFor="quantity">تعداد موجودی</label>
           <input
+          type="number"
             onChange={changeHandler}
             name="quantity"
             id="quantity"
@@ -56,6 +58,7 @@ function AddModal({ setIsADD, setProducts }) {
         <div>
           <label htmlFor="price">قیمت </label>
           <input
+             type="number"
             onChange={changeHandler}
             name="price"
             id="price"

@@ -60,7 +60,7 @@ function ProductPage() {
             </thead>
             <tbody>
               {Array.isArray(products) && products.length > 0 ? (
-                products.map((product) => (
+                products?.map((product) => (
                   <ProductCard
                     key={product.id}
                     product={product}
