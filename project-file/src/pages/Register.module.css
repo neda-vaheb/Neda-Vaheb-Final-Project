@@ -12,7 +12,7 @@
   box-shadow: 1px -3px 8px #e3e3e3;
   background-color: white;
 }
-.formHeader{
+.formHeader {
   align-items: center;
 }
 .formHeader h4 {
@@ -71,4 +71,3 @@
   color: #3a8bed;
   margin: 0 36px;
 }
-

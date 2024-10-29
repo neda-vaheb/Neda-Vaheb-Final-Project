@@ -1,9 +1,10 @@
 import { useState } from "react";
-import styles from "./Modal.module.css";
 import toast from "react-hot-toast";
-import { v4 } from "uuid";
 import { useMutation } from "@tanstack/react-query";
+
+import styles from "./Modal.module.css";
 import { postProduct } from "../../services/products";
+
 function AddModal({ setIsADD }) {
   const [product, setProduct] = useState({
     id: "",
@@ -11,7 +12,7 @@ function AddModal({ setIsADD }) {
     quantity: "",
     price: "",
   });
-  const { mutate, data } = useMutation(postProduct);
+  const { mutate } = useMutation(postProduct);
   const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -26,8 +27,6 @@ function AddModal({ setIsADD }) {
       return;
     }
 
-    // const newProduct = { ...product, id: v4() };
-    // setProducts((products) => [...products, newProduct]);
     mutate(product);
     setIsADD(false);
   };
@@ -38,7 +37,7 @@ function AddModal({ setIsADD }) {
         <div>
           <label htmlFor="name">نام کالا</label>
           <input
-             type="text"
+            type="text"
             onChange={changeHandler}
             name="name"
             id="name"
@@ -48,7 +47,7 @@ function AddModal({ setIsADD }) {
         <div>
           <label htmlFor="quantity">تعداد موجودی</label>
           <input
-          type="number"
+            type="number"
             onChange={changeHandler}
             name="quantity"
             id="quantity"
@@ -58,7 +57,7 @@ function AddModal({ setIsADD }) {
         <div>
           <label htmlFor="price">قیمت </label>
           <input
-             type="number"
+            type="number"
             onChange={changeHandler}
             name="price"
             id="price"

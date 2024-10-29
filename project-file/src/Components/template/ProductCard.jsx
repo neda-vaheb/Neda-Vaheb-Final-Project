@@ -11,12 +11,12 @@ import { deleteProduct, putProduct } from "../../services/products";
 function ProductCard({ product, products, setProducts }) {
   const [isEdit, setIsEdit] = useState(false);
   const [isdelete, setIsDelete] = useState(false);
-const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation(deleteProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });
-  
+
   const { mutate: editMutate } = useMutation(putProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });
@@ -48,8 +48,7 @@ const queryClient = useQueryClient();
     setIsDelete(true);
   };
   const finalDeleteHandler = (id) => {
-    // const newProducts = products.filter((product) => product.id !== id);
-    // setProducts(newProducts);
+   
     mutate(id);
   };
 
@@ -86,7 +85,7 @@ const queryClient = useQueryClient();
           setIsEdit={setIsEdit}
           editProduct={editProduct}
           setEditProduct={setEditProduct}
-        submitHandler={finalEditHandler}
+          submitHandler={finalEditHandler}
         />
       )}
       {isdelete && (
@@ -99,6 +98,5 @@ const queryClient = useQueryClient();
     </>
   );
 }
-
 
 export default ProductCard;

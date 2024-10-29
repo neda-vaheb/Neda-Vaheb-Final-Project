@@ -1,4 +1,4 @@
-import {useGetAllProducts } from "../services/products";
+import { useGetAllProducts } from "../services/products";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ProductCard from "../Components/template/ProductCard";
@@ -8,9 +8,8 @@ import styles from "./ProductPage.module.css";
 import AddModal from "../Components/modals/AddModal";
 import SearchBox from "../Components/template/SearchBox";
 
-
 function ProductPage() {
-  const [page ,setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const { data, error, isPending } = useGetAllProducts(page);
 
   const [products, setProducts] = useState([]);
@@ -78,11 +77,20 @@ function ProductPage() {
           </table>
         </div>
         <div className={styles.pagination}>
-        <button className={page===2 ? styles.disactive : null} onClick={()=>setPage(page=>page+1)}>بعدی</button>
-        {page}
-        <button className={page===1 ? styles.disactive : null} onClick={()=>setPage(page=>page-1)}>قبلی</button>
+          <button
+            className={page === 2 ? styles.disactive : null}
+            onClick={() => setPage((page) => page + 1)}
+          >
+            بعدی
+          </button>
+          {page}
+          <button
+            className={page === 1 ? styles.disactive : null}
+            onClick={() => setPage((page) => page - 1)}
+          >
+            قبلی
+          </button>
         </div>
-       
       </div>
       {isAdd && <AddModal setIsADD={setIsAdd} setProducts={setProducts} />}
     </>
