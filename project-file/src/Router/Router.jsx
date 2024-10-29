@@ -13,7 +13,7 @@ function Router() {
     <Routes>
       
           <Route
-          path="/"
+          path=""
           element={
             <AuthProvider>
               <ProductPage />

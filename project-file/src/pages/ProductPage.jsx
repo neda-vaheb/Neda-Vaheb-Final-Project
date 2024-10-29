@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllProducts } from "../services/products";
+import {useGetAllProducts } from "../services/products";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ProductCard from "../Components/template/ProductCard";
@@ -8,26 +7,26 @@ import styles from "./ProductPage.module.css";
 
 import AddModal from "../Components/modals/AddModal";
 import SearchBox from "../Components/template/SearchBox";
+
+
 function ProductPage() {
-  const { data, isLoading, isError } = useQuery(
-    ["All-Products"],
-    getAllProducts
-  );
+  const [page ,setPage] = useState(1);
+  const { data, error, isPending } = useGetAllProducts(page);
 
   const [products, setProducts] = useState([]);
   const [isAdd, setIsAdd] = useState(false);
   // Set products when data is loaded
   useEffect(() => {
-    if (data && data.data.data) {
-      setProducts(data.data.data);
+    if (data && data?.data?.data) {
+      setProducts(data?.data?.data);
     }
   }, [data]);
 
-  if (isError) {
+  if (error) {
     return toast.error("مشکلی پیش آمده");
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <Loader />;
   }
   const addHandler = () => {
@@ -59,7 +58,7 @@ function ProductPage() {
               </tr>
             </thead>
             <tbody>
-              {Array.isArray(products) && products.length > 0 ? (
+              {Array.isArray(products) && products?.length > 0 ? (
                 products?.map((product) => (
                   <ProductCard
                     key={product.id}
@@ -78,6 +77,12 @@ function ProductPage() {
             </tbody>
           </table>
         </div>
+        <div>
+        <button onClick={()=>setPage(page=>page+1)}>بعدی</button>
+        {page}
+        <button onClick={()=>setPage(page=>page-1)}>قبلی</button>
+        </div>
+       
       </div>
       {isAdd && <AddModal setIsADD={setIsAdd} setProducts={setProducts} />}
     </>

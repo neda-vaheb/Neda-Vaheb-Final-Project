@@ -1,12 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import api from "../configs/api";
 
-const getAllProducts = () => {
-  return api.get("/products");
+const useGetAllProducts = (page) => {
+  const queryFn = () => api.get(`products?page=${page}&limit=10`);
+  const queryKey = ["all-products", page];
+
+  return useQuery({ queryFn, queryKey });
 };
 const postProduct = (data) => {
-  const { id, name, price, quantity } = data;
+  const { name, price, quantity } = data;
   return api.post("http://localhost:3000/products", {
-    id: id,
     name: `${name}`,
     price: price,
     quantity: quantity,
@@ -24,4 +27,4 @@ const putProduct = (data) => {
     quantity: quantity,
   });
 };
-export { getAllProducts, postProduct, deleteProduct, putProduct };
+export { useGetAllProducts, postProduct, deleteProduct, putProduct };

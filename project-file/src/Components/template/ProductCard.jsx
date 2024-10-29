@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 // import PropTypes from "prop-types";
@@ -11,10 +11,12 @@ import { deleteProduct, putProduct } from "../../services/products";
 function ProductCard({ product, products, setProducts }) {
   const [isEdit, setIsEdit] = useState(false);
   const [isdelete, setIsDelete] = useState(false);
+const queryClient = useQueryClient();
 
   const { mutate } = useMutation(deleteProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });
+  
   const { mutate: editMutate } = useMutation(putProduct, {
     onSuccess: () => queryClient.invalidateQueries("All-Products"),
   });

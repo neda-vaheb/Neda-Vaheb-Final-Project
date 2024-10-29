@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { v4 } from "uuid";
 import { useMutation } from "@tanstack/react-query";
 import { postProduct } from "../../services/products";
-function AddModal({ setIsADD, setProducts }) {
+function AddModal({ setIsADD }) {
   const [product, setProduct] = useState({
     id: "",
     name: "",
@@ -26,9 +26,9 @@ function AddModal({ setIsADD, setProducts }) {
       return;
     }
 
-    const newProduct = { ...product, id: v4() };
-    setProducts((products) => [...products, newProduct]);
-    mutate(newProduct);
+    // const newProduct = { ...product, id: v4() };
+    // setProducts((products) => [...products, newProduct]);
+    mutate(product);
     setIsADD(false);
   };
   return (

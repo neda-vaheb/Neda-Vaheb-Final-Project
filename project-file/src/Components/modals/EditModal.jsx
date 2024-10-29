@@ -20,7 +20,8 @@ function EditModal({ editProduct, setEditProduct, setIsEdit, submitHandler }) {
         </div>
         <div>
           <label htmlFor="quantity">تعداد موجودی</label>
-          <input
+          <input 
+          type="number"
             onChange={changeHandler}
             name="quantity"
             id="quantity"
@@ -29,7 +30,8 @@ function EditModal({ editProduct, setEditProduct, setIsEdit, submitHandler }) {
         </div>
         <div>
           <label htmlFor="price">قیمت </label>
-          <input
+          <input 
+          type="number"
             onChange={changeHandler}
             name="price"
             id="price"
