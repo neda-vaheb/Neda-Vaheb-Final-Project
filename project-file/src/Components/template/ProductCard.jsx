@@ -100,10 +100,5 @@ const queryClient = useQueryClient();
   );
 }
 
-// ProductCard.propTypes = {
-//   product: PropTypes.object.isRequired,
-//   products: PropTypes.array.isRequired,
-//   setProducts: PropTypes.func.isRequired,
-// };
 
 export default ProductCard;

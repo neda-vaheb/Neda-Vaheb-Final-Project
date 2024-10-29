@@ -77,10 +77,10 @@ function ProductPage() {
             </tbody>
           </table>
         </div>
-        <div>
-        <button onClick={()=>setPage(page=>page+1)}>بعدی</button>
+        <div className={styles.pagination}>
+        <button className={page===2 ? styles.disactive : null} onClick={()=>setPage(page=>page+1)}>بعدی</button>
         {page}
-        <button onClick={()=>setPage(page=>page-1)}>قبلی</button>
+        <button className={page===1 ? styles.disactive : null} onClick={()=>setPage(page=>page-1)}>قبلی</button>
         </div>
        
       </div>

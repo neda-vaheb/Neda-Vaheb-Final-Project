@@ -4,7 +4,7 @@ import { getCookie } from "../utiles/cookie";
 function AuthProvider({ children }) {
   const token = getCookie("token");
   console.log("start")
-  if (!token) return <Navigate to="/register" />
+  if (!token) return <Navigate to="/login" />
 
   return children;
 }
